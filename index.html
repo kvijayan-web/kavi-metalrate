@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metal & Currency Rates Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-overlay">
+        <img src="https://images.unsplash.com/photo-1571883928742-f1bb7eb5e7b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Gold Finance Background" class="bg-image">
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">MetalHub</div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('live-rates')">Live Rates</a></li>
+                <li><a href="#" onclick="showPage('historical')">Historical Data</a></li>
+                <li><a href="#" onclick="showPage('currency')">Currency Comparison</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </nav>
+        <div class="header-time" id="liveTime"></div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search metals or currencies..." onkeyup="performSearch()">
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <h1>Welcome to MetalHub</h1>
+            <p class="overview">Track live precious metal rates and global currencies in real-time.</p>
+            
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Gold Overview</h3>
+                    <div id="goldOverview">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>Silver Overview</h3>
+                    <div id="silverOverview">Loading...</div>
+                </div>
+                <div class="card top-gainers">
+                    <h3>Top Gainers/Losers (24h)</h3>
+                    <div id="gainersLosers">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Rates Page -->
+        <section id="live-rates" class="page">
+            <h1>Live Metal Rates</h1>
+            <div class="rates-grid" id="ratesGrid">
+                <!-- Populated by JS -->
+            </div>
+            <p class="refresh-note">Auto-refreshes every 60 seconds. Last updated: <span id="lastUpdate"></span></p>
+        </section>
+
+        <!-- Historical Data Page -->
+        <section id="historical" class="page">
+            <h1>Historical Metal Data</h1>
+            <div class="chart-controls">
+                <select id="metalSelect" onchange="updateChart()">
+                    <option value="gold">Gold</option>
+                    <option value="silver">Silver</option>
+                    <option value="platinum">Platinum</option>
+                </select>
+                <select id="yearSelect" onchange="updateChart()">
+                    <option value="all">All Years (2019-2023)</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+                <div class="compare-section">
+                    <label>Compare Years:</label>
+                    <select id="compareYear1">
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+                    vs
+                    <select id="compareYear2">
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+                    <button onclick="compareYears()">Compare</button>
+                    <div id="compareResult"></div>
+                </div>
+            </div>
+            <canvas id="historicalChart" width="400" height="200"></canvas>
+        </section>
+
+        <!-- Currency Comparison Page -->
+        <section id="currency" class="page">
+            <h1>Currency Comparison</h1>
+            <table id="currencyTable">
+                <thead>
+                    <tr>
+                        <th>Currency</th>
+                        <th>vs USD</th>
+                        <th>Gold Equivalent (per oz)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+   <footer>
+    <div>Developed with <span class="heart">❤</span> by <strong>KAVI</strong></div>
+    <span>© 2025 All Rights Reserved</span>
+  </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
